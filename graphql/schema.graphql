@@ -1,0 +1,39 @@
+type Query {
+  customers: [Customer]!
+  customer(email: String!): Customer
+  feedbacks: [Feedback]!
+}
+
+type Mutation {
+  createFeedback(data: CustomerFeedbackInput): Feedback
+  resetData: resetDataMutationResponse
+}
+
+type Feedback {
+  id: ID!
+  comment: String!
+  owner: Customer
+  createdAt: String
+}
+
+type Customer {
+  id: ID!
+  name: String!
+  email: String!
+  tickets: [Feedback]!
+}
+
+input CustomerFeedbackInput {
+  name: String
+  email: String!
+  comment: String!
+}
+
+interface mutationResponse {
+  success: Boolean!
+}
+
+type resetDataMutationResponse implements mutationResponse {
+  success: Boolean!
+  count: Float
+}

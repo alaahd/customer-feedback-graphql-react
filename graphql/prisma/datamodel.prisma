@@ -1,0 +1,15 @@
+type Feedback {
+  id: ID! @id
+  comment: String!
+  owner: Customer 
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Customer {
+  id: ID! @id
+  email: String! @unique
+  name: String!
+  tickets: [Feedback] @relation(link: INLINE)
+  createdAt: DateTime! @createdAt
+}
